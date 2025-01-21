@@ -1,6 +1,6 @@
 # Handwritten-Digit-Classification-using-CNN
 
-
+This project involves building a Convolutional Neural Network (CNN) to classify handwritten digits from the MNIST dataset. The MNIST dataset consists of 60,000 training images and 10,000 test images of handwritten digits ranging from 0 to 9. The goal is to accurately recognize these digits through the CNN model.
 This project demonstrates how to build and train a Convolutional Neural Network (CNN) to recognize handwritten digits from the MNIST dataset using TensorFlow and Keras.
 
 ## Project Structure
