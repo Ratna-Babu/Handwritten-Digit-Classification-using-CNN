@@ -8,6 +8,27 @@ This project demonstrates how to build and train a Convolutional Neural Network 
 The project consists of three main parts:
 
 1. **Data Loading and Preprocessing:**
+   ```python
+   import tensorflow as tf
+
+   # MNIST dataset
+   (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+
+   # Invert the colors of the images
+   x_train = 255 - x_train
+   x_test = 255 - x_test
+   # Preprocessing the Images
+   x_train = x_train.astype('float32') / 255
+   x_test = x_test.astype('float32') / 255
+
+   # Reshape the images to include the channel dimension
+   x_train = x_train.reshape(x_train.shape[0], 28, 28, 1)
+   x_test = x_test.reshape(x_test.shape[0], 28, 28, 1)
+
+   # One-hot encode the labels
+   y_train = tf.keras.utils.to_categorical(y_train, 10)
+   y_test = tf.keras.utils.to_categorical(y_test, 10)
+   ```
    - Imports the MNIST dataset using `tf.keras.datasets.mnist.load_data()`.
    - Inverts the colors of the images for better model performance.
    - Normalizes pixel values to the range [0, 1].
@@ -16,9 +37,30 @@ The project consists of three main parts:
 
 2. **CNN Model Building and Training:**
    - Builds a CNN model using `Sequential` with layers like `Conv2D`, `MaxPooling2D`, `Flatten`, and `Dense`.
+     ```python
+       # CNN model
+       model = Sequential([
+       Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)),
+       MaxPooling2D(pool_size=(2, 2)),
+       Conv2D(64, kernel_size=(3, 3), activation='relu'),
+       MaxPooling2D(pool_size=(2, 2)),
+       Flatten(),
+       Dense(128, activation='relu'),
+       Dense(10, activation='softmax')
+       ])
+      ```
    - Compiles the model with the Adam optimizer, categorical cross-entropy loss, and accuracy metric.
+     ```python
+     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+     ```
    - Trains the model using `fit()` with specified epochs, batch size, and validation split.
+     ```python
+     model.fit(x_train, y_train, epochs=10, batch_size=200, validation_split=0.2)
+     ```
    - Saves the trained model to a file named 'mnist_cnn.h5'.
+      ```python
+      model.save('mnist_cnn.h5') 
+      ```
 
 3. **Prediction:**
    - Loads the trained model using `load_model()`.
