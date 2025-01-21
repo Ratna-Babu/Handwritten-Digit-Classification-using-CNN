@@ -88,8 +88,11 @@ The project consists of three main parts:
 ## Model Performance
 
 The model achieves high accuracy on the MNIST test set. To see the output, run the code.
-[accuracy]
 
+![accuracy](https://github.com/user-attachments/assets/181f6554-f827-4f9a-bc3e-d317ff6813d7)
+
+## Ouput
+![output](https://github.com/user-attachments/assets/5d9fef06-bcfc-41a9-abf8-f39515855910)
 
 ## Note
 
